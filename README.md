@@ -1,0 +1,6 @@
+# Mcp Snippets
+My snippets of code here
+
+What's in the repo?
+
+- Custom event system made by hideri. Small changes made by me.
