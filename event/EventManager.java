@@ -8,15 +8,14 @@ import java.util.stream.Collectors;
 import javax.xml.crypto.Data;
 
 /*
- * @author: Save
- * @version: 1.0.0
+ * Made by Hideri, small changes made by me
  */
 public class EventManager {
 	/*
 	 * Important stuff
 	 */
-	private static Class<EventTarget> eventTarget = EventTarget.class;
-    public static final Map<Class<?>, Object> registeredClasses = new HashMap<Class<?>, Object>();
+	private static Class<EventTarget> target = EventTarget.class;
+    public static HashMap<Class<?>, Object> registeredClasses = new HashMap<Class<?>, Object>();
     
     /*
      * Register and unregister a class to wait for event input
@@ -55,29 +54,33 @@ public class EventManager {
         }
     }
     
-    /*
-     * filter and makePriority
-     */
     private static Set<Method> filter(Event e, Method...methods)
     {
         return makePriority(Arrays.stream(methods).filter(method -> {
             Class<?>[] parametersType = method.getParameterTypes();
-            return Arrays.stream(parametersType).anyMatch(cls -> cls.equals(e.getClass())) && parametersType.length == 1 && method.isAnnotationPresent(eventTarget);
+            return Arrays.stream(parametersType).anyMatch(cls -> cls.equals(e.getClass())) && parametersType.length == 1 && method.isAnnotationPresent(target);
         }).collect(Collectors.toSet()));
     }
 
     private static Set<Method> makePriority(Set<Method> methods)
     {
         return methods.stream().sorted((m1, m2) -> {
-            return m2.getAnnotation(eventTarget).priority() - m1.getAnnotation(eventTarget).priority();
+            return m2.getAnnotation(target).priority() - m1.getAnnotation(target).priority();
         }).collect(Collectors.toSet());
     }
     
     /*
      * Clean the map
-     * (Useless stuff)
+     * (Useless)
      */
     public static void cleanMap() {
 		EventManager.registeredClasses.clear();
 	}
+    
+    static {
+    	Map theMap = registeredClasses;
+    	
+    	cleanMap();
+    	registeredClasses = (HashMap<Class<?>, Object>) theMap;
+    }
 }
