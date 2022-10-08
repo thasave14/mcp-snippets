@@ -1,5 +1,5 @@
 # Event System
-Sadly the hexeption github repo "hex's-event-system" has been removed, so I decided to create another event system created entirely by myself. The code is by hideri, I made only small changes https://github.com/Foreheadchann/Event-System. It is a lightweight event system, made to boost fps.
+Sadly the hexeption github repo "hex's-event-system" has been removed, so I decided to create another event system created entirely by myself. The code is by hideri (https://github.com/Foreheadchann/Event-System), I made only small changes. It is a lightweight event system, made to boost fps.
 
 # How to use:
 How to register a class
