@@ -8,7 +8,7 @@ EventManager.register(this /* You can enter as many classes as you want but they
 ```
 Event usage
 ```java
-@EventTarget(priority=int /* optional, higher number = executed earlier than other functions */)
+@EventTarget(priority=EnumPriority.DEFAULT /* optional, higher number = executed earlier than other functions */)
 public void onEvent(Event e) {
     do something
 }
